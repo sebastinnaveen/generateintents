@@ -1,0 +1,18 @@
+{
+  "name": "exceltojson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "excel2json.js",
+  "dependencies": {
+    "convert-csv-to-json": "^0.0.14",
+    "convert-excel-to-json": "^1.6.1",
+    "csvjson": "^5.1.0",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

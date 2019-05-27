@@ -1,0 +1,1 @@
+{"id":"","name":"Intent2","auto":true,"contexts":[],"responses":[{"resetContexts":false,"affectedContexts":[],"parameters":[],"messages":[{"type":0,"lang":"en","speech":"response 2.1"}],"defaultResponsePlatforms":{},"speech":[]}],"priority":500000,"webhookUsed":false,"webhookForSlotFilling":false,"lastUpdate":1558938999833,"fallbackIntent":false,"events":[]}
