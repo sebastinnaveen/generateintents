@@ -4,8 +4,9 @@ const readFile = require('fs').readFile;
 var fs = require('fs');
 var moment = require('moment');
 
-console.log("Reading template file !!!");
-readFile('C:/Users/ramkumar/Downloads/datamining/datamining/eightcolumn.csv', 'utf-8', (err, fileContent) => {
+console.log('Start Data Mining');
+
+readFile('./eightcolumn.csv', 'utf-8', (err, fileContent) => {
     if(err) {
         console.log(err); // Do something to handle the error or just throw it
         throw new Error(err);
@@ -34,9 +35,9 @@ for (var myKey in itemsObj) {
 }
 console.log(itemsList)
 */
+console.log('Create Intents');
 	var jsonData = jsonObj;
 	var intentArr = {};
-	console.log("Processing the training dataset and generating the intents !!!");
 	
 			if (jsonData.length > 0) {
 				
@@ -73,7 +74,7 @@ console.log(itemsList)
 									"responses": [
 											{
 												  "resetContexts": false,
-												  //"action": "instbot.attendance",
+												  "action": "",
 												  "affectedContexts": [],
 												  "parameters": [],
 												  "messages": [
@@ -88,20 +89,19 @@ console.log(itemsList)
 											}
 											],
 								  "priority": 500000,
-								  "webhookUsed": false,
+								  "webhookUsed": true,
 								  "webhookForSlotFilling": false,
 								  "lastUpdate": unixdatetime,
 								  "fallbackIntent": false,
+								  "userSays" : [],
 								  "events": []
 							   }
-					fs.writeFile('./dialogflowimport/intents/'+intentName+' Intent.json',JSON.stringify(intentJson), function(err, result) {
-						if(err) console.log('error', err);
-					});	
+					fs.writeFileSync('./dialogflowimport/intents/'+intentName+' Intent.json',JSON.stringify(intentJson));	
 						var userSayJsonArr =[];					
 					 for(var ele=0;ele<intentArr[myKey].length;ele++)
 					 {
 						 var unixdatetime = moment().valueOf();
-						var userJson = { 	
+						var userJson = {
 							"id": "",
 							"data": [
 							  {
@@ -116,14 +116,15 @@ console.log(itemsList)
 						  
 						   userSayJsonArr.push(userJson);
 					 }
-					fs.writeFile('./dialogflowimport/intents/'+intentName+' Intent_usersays_en.json',JSON.stringify(userSayJsonArr), function(err, result) {
-						if(err) console.log('error', err);
-					});		   
+					 // intentJson.userSays = userSayJsonArr;
+					 //console.log(intentJson);
+					fs.writeFileSync('./dialogflowimport/intents/'+intentName+' Intent_usersays_en.json',JSON.stringify(userSayJsonArr));		   
 					//console.log(intentJson);
 					//break;
 					
 				}
+				console.log('Completed!!!');
 			}
 
-		console.log("Generated the FAQ dataset for bot !!!");
+		
 });
